@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Renault-Digital Web-Component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin:0;">
+<rd-virtual-scroll width="80">
+    
+    <template>
+        <div style="height: 65px; background: tan;">Ceci est une test</div>
+    </template>
+    
+</rd-virtual-scroll>
+
+<script>
+    let virtual = document.body.querySelector('rd-virtual-scroll');
+    let array = [];
+    for(let i = 0; i< 1000; i++) {
+        array.push(i);
+    }
+    virtual.items = array;
+</script>
+
+</body>
+</html>
