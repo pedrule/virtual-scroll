@@ -1,5 +1,5 @@
 
-import { ScrollBehavior  } from '@renault-digital/ScrollBehavior/src';
+import { ScrollBehavior  } from '@renault-digital/scrollBehavior/src';
 
 export const ScrollVirtualBehavior = superClass => class extends ScrollBehavior(superClass) {
     static get properties() {
