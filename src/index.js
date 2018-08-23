@@ -1,4 +1,4 @@
-import { PolymerElement } from '@polymer/polymer/polymer-element';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element';
 import {ScrollVirtualBehavior} from './ScrollVirtualBehavior';
 import {InstanceBehavior} from './InstanceBehavior';
 
@@ -17,6 +17,7 @@ export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(Poly
 
             width: {
                 type: Number,
+                reflectToAttribute: true,
                 observer: '__widthChanged'
             },
 
@@ -59,6 +60,10 @@ export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(Poly
     __widthChanged(arg) {
         this.instances.forEach(item => item.style.width = `${arg}px`);
         this.$.container.style.width = `${arg}px`;
+    }
+
+    __itemsChanged(arg) {
+
     }
 }
 customElements.define('rd-virtual-scroll', RdVirtualScroll);

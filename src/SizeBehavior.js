@@ -1,6 +1,7 @@
 
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status';
+import { html } from "@polymer/polymer/polymer-element";
 
 export const SizeBehavior = SuperClass => class extends SuperClass{
     static get properties() {
@@ -17,12 +18,12 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
     }
 
     static get template() {
-        return `
+        return html`
         <style include="iron-flex iron-flex-alignment">
             :host{
-                height: 100vh;
+                height: 50vh;
                 position: absolute;
-                width: 100vw;
+                width: 50vw;
             }
 
             #container{
@@ -63,7 +64,7 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
             let content = this.template.content.cloneNode(true);
             content = content.firstElementChild;
             let observer = new MutationObserver((mutationList) => {
-                if(mutationList[0] && mutationList[0].addedNodes)size  = mutationList[0].addedNodes[0].getBoundingClientRect();
+                if(mutationList[0] && mutationList[0].addedNodes)size = mutationList[0].addedNodes[0].getBoundingClientRect();
                 observer.disconnect();
                 this.removeChild(content);
                 resolve(size);

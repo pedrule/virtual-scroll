@@ -15,7 +15,7 @@
     "license": "",
     "repository": {
       "type": "git",
-      "url": "git+https://git.renault-digital.com/shared/rd-virtual-scroll-wc.git"
+      "url": "git+https://git.renault-digital.com/shared/wc-rd-virtualscroll.git"
     },
     "devDependencies": {
       "babel-core": "^6.26.0",
@@ -32,7 +32,7 @@
     "dependencies": {
       "@polymer/polymer": "next",
       "@polymer/iron-flex-layout": "next",
-      "@renault-digital/ScrollBehavior": "git+https://git.renault-digital.com/shared/rd-scrollMixinBehavior-wc.git"
+      "@renault-digital/scrollBehavior": "git+https://git.renault-digital.com/shared/rd-scrollMixinBehavior-wc.git"
     }
   }
   
