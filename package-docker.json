@@ -31,7 +31,7 @@
     },
     
     "dependencies": {
-      "@polymer/polymer": "next",
+      "@polymer/polymer": "3.0.5",
       "@polymer/iron-flex-layout": "next",
       "@renault-digital/scrollBehavior": "git+https://git.renault-digital.com/shared/rd-scrollMixinBehavior-wc.git"
     }
