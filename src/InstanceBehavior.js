@@ -36,14 +36,15 @@ export const InstanceBehavior = SuperClass => class extends SizeBehavior(SuperCl
      * @observer on instances and numberInstance properties
      * @param {Array} instances 
      * @param {Number} numberInstance 
-     */
+    */
     __adjustNumberOfInstances(numberInstance) {
         if(numberInstance && numberInstance != Infinity){
             //if there is not enough instances of items, we add new ones
             if(this.instances.length < numberInstance) {
                 for(let i = this.instances.length; i<numberInstance; i++){
-                    let instance = this.template.content.cloneNode(true);
-                    instance = instance.firstElementChild;
+                    // let instance = this.template.content.cloneNode(true);
+                    // instance = instance.firstElementChild;
+                    let instance = this.content;
                     instance.style.position = "absolute";
                     this.appendChild(instance);
                     instance.style.transform = `translate3d(0, ${i*this.unitarySize.height}px, 0)`;

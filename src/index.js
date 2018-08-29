@@ -65,5 +65,11 @@ export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(Poly
     __itemsChanged(arg) {
 
     }
+
+    static get templateItem() {
+        return html`
+            <div style="height: 65px; background: tan;position: absolute">Ceci est un test</div>
+        `
+    }
 }
 customElements.define('rd-virtual-scroll', RdVirtualScroll);

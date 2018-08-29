@@ -9,10 +9,6 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
             unitarySize: {
                 type: Object,
                 notify: true
-            },
-
-            template: {
-                type: Object,
             }
         }
     }
@@ -37,10 +33,14 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
         `
     }
 
+    constructor() {
+        super();
+
+    }
+
     connectedCallback(){
         super.connectedCallback();
-        this.template = this.querySelector('template');
-        this.removeChild(this.template);
+        this.template = this.constructor.templateItem;
         this.__observeSlot();
     }
 
@@ -61,16 +61,34 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
     __getSizeTemplateVirtual() {
         return new Promise((resolve ,reject) => {
             let size;
-            let content = this.template.content.cloneNode(true);
-            content = content.firstElementChild;
+            // let content = this.template.content.cloneNode(true);
+            // content = content.firstElementChild;
             let observer = new MutationObserver((mutationList) => {
                 if(mutationList[0] && mutationList[0].addedNodes)size = mutationList[0].addedNodes[0].getBoundingClientRect();
                 observer.disconnect();
-                this.removeChild(content);
+                // this.removeChild(this.content);
                 resolve(size);
             });
             observer.observe(this, {childList: true})
-            this.appendChild(content);
+            this.appendChild(this.content);
         })
+    }
+    set template(value) {
+        // let template = document.createElement('template');
+        // template.content.appendChild(value);
+        // this._template = template;
+        this._template = value;
+    }
+
+    get template() {
+        return this._template;
+    }
+
+    set content(value) {
+        this._content = value;
+    }
+
+    get content() {
+        return this.template.content.cloneNode(true).firstElementChild;
     }
 }
