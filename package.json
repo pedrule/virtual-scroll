@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "This is a web-component for scroll and displaying without latency huge datalist",
   "main": "./dist/main.bundle.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/"
   ],
