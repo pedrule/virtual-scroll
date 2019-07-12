@@ -5,7 +5,7 @@ import {InstanceBehavior} from './InstanceBehavior';
 import '@polymer/iron-flex-layout/iron-flex-layout';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes';
 
-export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(PolymerElement)) {
+export class PedruleVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(PolymerElement)) {
     static get properties() {
         return {
 
@@ -44,10 +44,10 @@ export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(Poly
      * @observer
      * @param {Number} arg 
      */
-    __heightChanged(arg) {
-        if(arg != undefined){ 
+    __heightChanged(arg, prev) {
+        if(arg != undefined && arg !== prev){ 
             this.$.container.style.height = `${arg}px`;
-            this.__resetInstances();
+            // this.__resetInstances();
             this.__evaluateScroll();
         }
     }
@@ -63,7 +63,8 @@ export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(Poly
     }
 
     __itemsChanged(arg) {
-
+        this.__resetInstances();
+        if (arg) this.instances.forEach((instance, index) => (instance.item = arg[index]));
     }
 
     static get templateItem() {
@@ -72,4 +73,4 @@ export class RdVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior(Poly
         `
     }
 }
-customElements.define('rd-virtual-scroll', RdVirtualScroll);
+customElements.define('pedrule-virtual-scroll', PedruleVirtualScroll);

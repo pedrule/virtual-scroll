@@ -1,0 +1,10 @@
+FROM node:latest as base
+RUN npm install -g yarn np
+COPY ./package-docker.json /app/package.json
+COPY ./index.js /app/index.js
+COPY ./webpack.config.js /app/webpack.config.js
+WORKDIR /app
+RUN yarn
+ARG NPM_CRED
+COPY ./.npmrc /app/.npmrc
+RUN echo $NPM_CRED >> /app/.npmrc 

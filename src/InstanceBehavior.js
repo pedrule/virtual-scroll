@@ -15,7 +15,7 @@ export const InstanceBehavior = SuperClass => class extends SizeBehavior(SuperCl
      * getter which allow to
      */
     get instances() {
-        return this.querySelectorAll('*');
+        return this.querySelectorAll(this.nameOfContainer);
     }
 
     /**

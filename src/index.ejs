@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Renault-Digital Web-Component</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="margin:0;">
     <!-- <div  style="width: 300px; height: 50vh"> -->
-        <rd-virtual-scroll width="150">
+        <rd-virtual-scroll width="150" name-of-container="span">
             <!-- <template> -->
-                
+                <span>This is a test with an other </div>
             <!-- </template> -->
         </rd-virtual-scroll>
     <!-- </div> -->
 
 
 <script>
-    let virtual = document.body.querySelector('rd-virtual-scroll');
+    let virtual = document.body.querySelector('pedrule-virtual-scroll');
     let array = [];
     for(let i = 0; i< 1000; i++) {
         array.push(i);

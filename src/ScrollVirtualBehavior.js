@@ -1,5 +1,5 @@
 
-import { ScrollBehavior  } from '@renault-digital/scrollBehavior/src';
+import { ScrollBehavior  } from '@pedrule/scrollBehavior';
 
 export const ScrollVirtualBehavior = superClass => class extends ScrollBehavior(superClass) {
     static get properties() {

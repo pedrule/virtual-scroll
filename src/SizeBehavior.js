@@ -9,6 +9,12 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
             unitarySize: {
                 type: Object,
                 notify: true
+            },
+
+            nameOfContainer: {
+                type: String,
+                reflectToAttribute: true,
+                observer: "onNameSetted"
             }
         }
     }
@@ -17,13 +23,14 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
         return html`
         <style include="iron-flex iron-flex-alignment">
             :host{
-                height: 50vh;
+                /* height: 50vh;
                 position: absolute;
-                width: 50vw;
+                width: 50vw; */
             }
 
             #container{
                 position: absolute;
+                width: 100%;
                 overflow: hidden;
             }
 
@@ -40,8 +47,16 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
 
     connectedCallback(){
         super.connectedCallback();
-        this.template = this.constructor.templateItem;
-        this.__observeSlot();
+        window.addEventListener('resize', () => {
+            this.computeSizeOfHost();
+            this.__evaluateScroll();
+        })
+        // if(this.nameOfContainer)this.__observeSlot();
+        // this.template = this.constructor.templateItem;
+    }
+
+    onNameSetted(arg) {
+        if(arg) this.__observeSlot();
     }
 
     /**
@@ -61,23 +76,30 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
     __getSizeTemplateVirtual() {
         return new Promise((resolve ,reject) => {
             let size;
-            // let content = this.template.content.cloneNode(true);
-            // content = content.firstElementChild;
+            let slotelement = this.querySelector(this.nameOfContainer);
+            if(!slotelement) return;
             let observer = new MutationObserver((mutationList) => {
-                if(mutationList[0] && mutationList[0].addedNodes)size = mutationList[0].addedNodes[0].getBoundingClientRect();
-                observer.disconnect();
-                // this.removeChild(this.content);
+                if(mutationList[0] && mutationList[0].addedNodes) {
+                    let slotelement = this.querySelector(this.nameOfContainer);
+                    size = slotelement.getBoundingClientRect();
+                    this.template = slotelement;
+                    this.computeSizeOfHost();
+                    // size = mutationList[0].addedNodes[0].getBoundingClientRect();
+                    // this.template = mutationList[0].addedNodes[0];
+                }
+                if(slotelement) observer.disconnect();
                 resolve(size);
             });
             observer.observe(this, {childList: true})
+           
             this.appendChild(this.content);
         })
     }
     set template(value) {
-        // let template = document.createElement('template');
-        // template.content.appendChild(value);
-        // this._template = template;
-        this._template = value;
+        let template = document.createElement('template');
+        template.content.appendChild(value);
+        this._template = template;
+        // this._template = value;
     }
 
     get template() {
@@ -90,5 +112,14 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
 
     get content() {
         return this.template.content.cloneNode(true).firstElementChild;
+    }
+
+    computeSizeOfHost() {
+        setTimeout(() => {
+            const position = this.getBoundingClientRect();
+            this.style.position = "absolute";
+            this.style.width = `${position.width}px`;
+            this.style.height = `${position.height}px`;
+        }, 1000)
     }
 }

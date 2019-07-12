@@ -1,5 +1,5 @@
 {
-    "name": "virtual-scroll",
+    "name": "@pedrule/virtual-scroll",
     "version": "0.0.1",
     "description": "This is a web-component neither ending scroll list",
     "main": "index.js",
@@ -13,10 +13,6 @@
     ],
     "author": "",
     "license": "",
-    "repository": {
-      "type": "git",
-      "url": "git+https://git.renault-digital.com/shared/<todefine>"
-    },
     "devDependencies": {
       "babel-core": "^6.26.0",
       "babel-loader": "^7.1.2",
@@ -33,7 +29,7 @@
     "dependencies": {
       "@polymer/polymer": "3.0.5",
       "@polymer/iron-flex-layout": "next",
-      "@renault-digital/scrollBehavior": "git+https://git.renault-digital.com/shared/rd-scrollMixinBehavior-wc.git"
+      "@pedrule/scrollBehavior": "next"
     }
   }
   
