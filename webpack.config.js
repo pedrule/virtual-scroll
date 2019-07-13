@@ -72,7 +72,7 @@ module.exports = {
 
         ]
     },
-    // devtool: "inline-source-map",
+    devtool: "inline-source-map",
     // Enable the Webpack dev server which will build, serve, and reload our
     // project on changes.
     devServer: {
