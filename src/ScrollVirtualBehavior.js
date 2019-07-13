@@ -1,5 +1,5 @@
 
-import { ScrollBehavior  } from '@pedrule/scrollBehavior';
+import { ScrollBehavior  } from '@pedrule/scrollbehavior/src/index.js';
 
 export const ScrollVirtualBehavior = superClass => class extends ScrollBehavior(superClass) {
     static get properties() {
