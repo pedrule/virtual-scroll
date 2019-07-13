@@ -48,7 +48,7 @@ export class PedruleVirtualScroll extends InstanceBehavior(ScrollVirtualBehavior
         if(arg != undefined && arg !== prev){ 
             this.$.container.style.height = `${arg}px`;
             // this.__resetInstances();
-            this.__evaluateScroll();
+            this.evaluateScroll();
         }
     }
 

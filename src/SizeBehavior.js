@@ -49,7 +49,7 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
         super.connectedCallback();
         window.addEventListener('resize', () => {
             this.computeSizeOfHost();
-            this.__evaluateScroll();
+            this.evaluateScroll();
         })
         // if(this.nameOfContainer)this.__observeSlot();
         // this.template = this.constructor.templateItem;
