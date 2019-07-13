@@ -1,6 +1,8 @@
 FROM node:latest
 RUN npm install -g yarn
-COPY ./package-docker.json /package.json
-COPY ./index.js /index.js
-COPY ./webpack.config.js /webpack.config.js
+COPY ./package-docker.json /app/package.json
+COPY ./index.js /app/index.js
+COPY ./webpack.config.js /app/webpack.config.js
+WORKDIR /app
 RUN yarn
+RUN cat package.json

@@ -5,10 +5,11 @@ services:
       context: .
       dockerfile: Dockerfile_start
     command: ./node_modules/.bin/webpack-dev-server --host 0.0.0.0 --hot
+    working_dir: /app
     volumes:
       - type: bind
         source: ./src
-        target: /src
+        target: /app/src
       # - type: bind
       #   source: ./dist
       #   target: /dist
@@ -16,7 +17,6 @@ services:
           - "1812:1812"
 
   wc_build:
-      image: wc-build
       build:
         context: .
         dockerfile: Dockerfile_build
@@ -24,13 +24,16 @@ services:
       volumes:
         - type: bind
           source: ./src
-          target: /src
+          target: /app/src
         - type: bind
           source: ./dist
-          target: /dist
+          target: /app/dist
+        - type: bind
+          source: ./package.json
+          target: /app/package.json
         - type: bind
           source: ./webpack.config.js
-          target: /webpack.config.js
+          target: /app/webpack.config.js
       ports:
             - "1813:1813"
 
@@ -49,8 +52,7 @@ services:
     ports:
           - "1814:1814"
 
-  wc-publish:
-    image: wc-publish
+  wc_publish:
     build: 
       context: .
       dockerfile: Dockerfile.publish

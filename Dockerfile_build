@@ -1,9 +1,11 @@
 FROM node:latest as base
 RUN npm install -g yarn
-COPY ./package-docker.json /package.json
-COPY ./index.js /index.js
-COPY ./webpack.config.js /webpack.config.js
+COPY ./package-docker.json /app/package.json
+COPY ./index.js /app/index.js
+COPY ./webpack.config.js /app/webpack.config.js
+WORKDIR /app
 RUN yarn
 
 FROM base as publish
 RUN npm i -g np
+RUN ls ./node_modules 
