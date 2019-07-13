@@ -1,14 +1,15 @@
 {
   "name": "@pedrule/virtual-scroll",
   "flat": true,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "This is a web-component for scroll and displaying without latency huge datalist",
   "main": "./dist/main.bundle.js",
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "src/"
   ],
   "scripts": {
     "test": "./node_modules/.bin/wct",

@@ -26,6 +26,7 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
                 /* height: 50vh;
                 position: absolute;
                 width: 50vw; */
+                opacity: 0;
             }
 
             #container{
@@ -120,6 +121,7 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
             this.style.position = "absolute";
             this.style.width = `${position.width}px`;
             this.style.height = `${position.height}px`;
+            this.style.opacity = 1;
         }, 1000)
     }
 }
