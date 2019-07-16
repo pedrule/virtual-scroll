@@ -56,6 +56,7 @@ export const InstanceBehavior = SuperClass => class extends SizeBehavior(SuperCl
                     this.removeChild(this.instances[i]);
                 }
             }
+            this.dispatchEvent(new CustomEvent('containers-ready', {details: {value: this.instances}, bubbles: true, composed: true}));
         }
         //finally we affect to each instances corresponding data in items array indices.
         this.lastIndex = this.instances.length;

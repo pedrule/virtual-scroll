@@ -22,7 +22,7 @@ export const SizeBehavior = SuperClass => class extends SuperClass{
     static get template() {
         return html`
         <style include="iron-flex iron-flex-alignment">
-            :host{
+            :host {
                 /* height: 50vh;
                 position: absolute;
                 width: 50vw; */
